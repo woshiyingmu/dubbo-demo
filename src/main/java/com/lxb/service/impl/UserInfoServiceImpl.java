@@ -7,7 +7,6 @@ import com.lxb.dao.ILogMapper;
 import com.lxb.dao.IUserInfoMapper;
 import com.lxb.model.LogDo;
 import com.lxb.model.UserInfoDo;
-import com.lxb.service.IUserInfoService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
