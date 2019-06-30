@@ -22,6 +22,4 @@ public class UserInfoServiceImpl implements UserService {
         return userCode + "aa";
     }
 
-
-
 }
