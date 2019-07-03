@@ -3,20 +3,24 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
        xmlns:context="http://www.springframework.org/schema/context"
+
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
 	    http://code.alibabatech.com/schema/dubbo
 		http://code.alibabatech.com/schema/dubbo/dubbo.xsd
         http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context.xsd">
+       http://www.springframework.org/schema/context/spring-context.xsd
+   ">
 
     <context:property-placeholder location="classpath:prop/zookeeper.properties" />
 
     <dubbo:application name="dubbo_provider" />
-    <dubbo:registry id="dubbo_registry"  address="${dubbo.registry.address}" protocol="zookeeper"/>
-    <dubbo:protocol name="dubbo" port="${dubbo.provider.protocol.port}" />
+    <dubbo:registry id="dubbo_registry"  address="127.0.0.1:2181" protocol="zookeeper"/>
+    <dubbo:protocol name="dubbo" port="20880" />
     <!--<dubbo:consumer timeout="10000" retries="2" />-->
     <dubbo:monitor protocol="registry" />
 
     <dubbo:service registry="dubbo_registry" timeout="10000" retries="1" version="1.0" interface="com.lxb.api.UserService" ref="userService" />
+
+    <bean id="userService" class="com.lxb.service.impl.UserServiceImpl"/>
 </beans>
