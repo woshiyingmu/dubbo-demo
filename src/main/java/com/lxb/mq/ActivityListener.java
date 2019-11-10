@@ -27,8 +27,9 @@ public class ActivityListener implements ChannelAwareMessageListener {
     public void onMessage(Message message,Channel channel) {
 
         try {
+            channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);//手动确认接收到消息
             log.info("message:{}", JSON.toJSON(new String(message.getBody(),"UTF-8")));
-        } catch (UnsupportedEncodingException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

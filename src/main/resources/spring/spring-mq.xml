@@ -27,7 +27,7 @@
         <property name="queues" ref="rabbitQueue"></property>
         <property name="exposeListenerChannel" value="true"></property>
         <property name="maxConcurrentConsumers" value="10"></property>
-        <property name="concurrentConsumers" value="2"></property>
+        <property name="concurrentConsumers" value="10"></property>
         <property name="connectionFactory" ref="connectionFactory"></property>
         <property name="acknowledgeMode" value="MANUAL"></property>
         <property name="messageListener" ref="serverMessageListener"></property>
