@@ -1,1 +1,2 @@
 com\lxb\service\impl\UserServiceImpl.class
+com\lxb\mq\ActivityListener.class
