@@ -16,6 +16,7 @@
     <rabbit:direct-exchange name="direct.exchange" durable="false" auto-delete="false">
         <rabbit:bindings>
             <rabbit:binding key="com.yingmu.mq.test" queue="com.yingmu.mq.test"></rabbit:binding>
+
         </rabbit:bindings>
     </rabbit:direct-exchange>
     <!--  申明一个消息队列Queue   -->
@@ -32,4 +33,26 @@
         <property name="acknowledgeMode" value="MANUAL"></property>
         <property name="messageListener" ref="serverMessageListener"></property>
     </bean>
+
+
+    <!--监听fanout模式队列-->
+    <rabbit:queue name="fanoutMq1" durable="true" />
+    <rabbit:queue name="fanoutMq2" durable="true" />
+
+    <rabbit:fanout-exchange name="com.yingmu.fanout.exchange" xmlns="http://www.springframework.org/schema/rabbit" durable="true">
+        <rabbit:bindings>
+            <rabbit:binding queue="fanoutMq1"></rabbit:binding>
+            <rabbit:binding queue="fanoutMq2"></rabbit:binding>
+        </rabbit:bindings>
+    </rabbit:fanout-exchange>
+
+
+    <bean id="fanoutMqConsumer1" class="com.lxb.mq.FanoutMqListener1"></bean>
+    <bean id="fanoutMqConsumer2" class="com.lxb.mq.FanoutMqListener2"></bean>
+
+    <rabbit:listener-container connection-factory="connectionFactory" concurrency= "8">
+        <rabbit:listener queues="fanoutMq1" ref="fanoutMqConsumer1" method="onMessage"/>
+        <rabbit:listener queues="fanoutMq2" ref="fanoutMqConsumer2" method="onMessage"/>
+    </rabbit:listener-container>
+
 </beans>

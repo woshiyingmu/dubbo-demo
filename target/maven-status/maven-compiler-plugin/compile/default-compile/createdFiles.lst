@@ -1,2 +1,4 @@
+com\lxb\mq\FanoutMqListener1.class
+com\lxb\mq\FanoutMqListener2.class
 com\lxb\service\impl\UserServiceImpl.class
 com\lxb\mq\ActivityListener.class
